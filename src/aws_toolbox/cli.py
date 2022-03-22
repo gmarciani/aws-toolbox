@@ -2,7 +2,7 @@
 
 import click
 
-from aws_toolbox.commands import ec2
+from aws_toolbox.commands.ec2 import ec2
 from aws_toolbox.config.metadata import NAME, VERSION
 from aws_toolbox.utils import guiutils, logutils
 
