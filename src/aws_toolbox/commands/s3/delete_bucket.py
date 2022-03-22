@@ -1,0 +1,62 @@
+import re
+
+import boto3
+import click
+
+from aws_toolbox.commands.regions import get_regions
+from aws_toolbox.utils import logutils
+
+log = logutils.get_logger(__name__)
+
+
+@click.command(help="Delete Buckets.")
+@click.option(
+    "--name",
+    required=True,
+    help="Regex pattern for Bucket name.",
+)
+@click.option(
+    "--dryrun/--no-dryrun", default=False, show_default=True, type=bool, help="Activate/Deactivate dryrun mode."
+)
+@click.pass_context
+def delete_bucket(ctx, name, dryrun):
+    log.info(f"Deleting Buckets with name pattern {name}, dryrun {dryrun}")
+
+    bucket_name_pattern = re.compile(name)
+
+    s3_client = boto3.client("s3")
+    buckets = s3_client.list_buckets()
+
+    buckets_filter = lambda bucket: re.match(bucket_name_pattern, bucket["Name"])
+    buckets_to_delete = list(filter(buckets_filter, buckets["Buckets"]))
+
+    if len(buckets_to_delete) == 0:
+        log.info(f"No Bucket to delete in region {region}")
+        return
+
+    if dryrun:
+        log.info(
+            f"The following buckets would be deleted, but dryrun mode is enabled and nothing will be done: {','.join(map(lambda b: b['Name'], buckets_to_delete))}"
+        )
+        return
+
+    for bucket_to_delete in buckets_to_delete:
+        bucket_name = bucket_to_delete["Name"]
+        creation_date = bucket_to_delete["CreationDate"]
+        log.info(f"Emptying Bucket {bucket_name} in region {region} with creation date {creation_date}")
+
+        try:
+            object_versions = s3_client.list_object_versions(Bucket=bucket_name)
+            objects_to_delete = [
+                {"Key": obj["Key"], "VersionId": obj["VersionId"]} for obj in object_versions["Versions"]
+            ]
+            s3_client.delete_objects(Bucket=bucket_name, Delete={"Objects": objects_to_delete, "Quiet": False})
+        except Exception as e:
+            log.error(f"Cannot empty Bucket {bucket_name}: {e}")
+
+        log.info(f"Deleting Bucket {bucket_name} in region {region} with creation date {creation_date}")
+
+        try:
+            s3_client.delete_bucket(Bucket=bucket_name)
+        except Exception as e:
+            log.error(f"Cannot delete Bucket {bucket_name}: {e}")
