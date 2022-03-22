@@ -1,5 +1,5 @@
-boto3~=1.21.13
-click~=8.0.3
+boto3~=1.21.24
+click~=8.0.4
 colored~=1.4.3
 pyfiglet~=0.8.post1
 python-ldap~=3.4.0
