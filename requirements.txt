@@ -1,4 +1,4 @@
-boto3~=1.21.13
+boto3~=1.21.24
 click~=8.0.3
 colored~=1.4.3
 pyfiglet~=0.8.post1
