@@ -35,7 +35,7 @@ def delete_bucket(ctx, name, dryrun):
 
     if dryrun:
         log.info(
-            f"The following {len(buckets_to_delete)} buckets would be deleted, but dryrun mode is enabled and nothing will be done: {','.join(map(lambda b: b['Name'], buckets_to_delete))}"
+            f"The following {len(buckets_to_delete)} buckets would be deleted, but dryrun mode is enabled and nothing will be done: {', '.join(map(lambda b: b['Name'], buckets_to_delete))}"
         )
         return
 
