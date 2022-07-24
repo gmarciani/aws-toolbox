@@ -4,6 +4,7 @@ import click
 
 from aws_toolbox.commands.ec2 import ec2
 from aws_toolbox.commands.s3 import s3
+from aws_toolbox.commands.secretsmanager import secretsmanager
 from aws_toolbox.config.metadata import NAME, VERSION
 from aws_toolbox.utils import guiutils, logutils
 
@@ -26,6 +27,7 @@ def main(ctx, debug):
 
 main.add_command(ec2.ec2)
 main.add_command(s3.s3)
+main.add_command(secretsmanager.secretsmanager)
 
 
 if __name__ == "__main__":
