@@ -1,11 +1,9 @@
 # AWS Toolbox
 AWS Toolbox.
 
-## Requirements
+## Installation
 ```
-pip install --upgrade pip
-pip install -r requirements-dev.txt
-pip install -e .
+pip install aws-toolbox
 ```
 
 ## Usage
