@@ -1,5 +1,6 @@
 # AWS Toolbox
-AWS Toolbox.
+AWS Toolbox extends the AWS CLI commands with some handy solutions, such as
+executing a command on every region and resources matching a given pattern.
 
 ## Installation
 ```
