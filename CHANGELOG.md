@@ -1,5 +1,11 @@
 # CHANGELOG
 
+0.0.3
+-----
+### CHANGES
+- [Dependencies] Upgraded boto3 to version 1.24.40
+- [Dependencies] Upgraded python-ldap to version 3.4.2
+
 0.0.2
 -----
 ### CHANGES
