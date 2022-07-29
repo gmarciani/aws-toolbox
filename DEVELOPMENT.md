@@ -20,7 +20,9 @@ pre-commit run --all-files
 ## Install
 Install the package on your local environment:
 ```
-pip install .
+pip install --upgrade pip
+pip install -r requirements-dev.txt
+pip install -e .
 ```
 
 ## Build
@@ -29,12 +31,12 @@ python -m build
 ```
 
 ## Publish
-Publish to PyPi test repo at https://test.pypi.org/project/markov-solver:
+Publish to PyPi test repo at [TestPyPi:aws-toolbox](https://test.pypi.org/project/aws-toolbox):
 ```
 python -m twine upload --repository testpypi dist/*
 ```
 
-Publish to PyPi production repo at https://pypi.org/project/markov-solver:
+Publish to PyPi production repo at [PyPi:aws-toolbox](https://pypi.org/project/aws-toolbox):
 ```
 python -m twine upload dist/*
 ```

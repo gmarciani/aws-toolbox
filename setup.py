@@ -13,7 +13,7 @@ def readme():
 
 
 def requirements():
-    dependencies = ["setuptools~=58.0.4"]
+    dependencies = ["setuptools~=63.2.0"]
     with open(os.path.join(os.path.dirname(__file__), "requirements.txt"), encoding="utf-8") as f:
         dependencies.extend([line.strip() for line in f.readlines() if line.strip()])
     return dependencies

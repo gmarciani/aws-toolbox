@@ -3,7 +3,6 @@ import re
 import boto3
 import click
 
-from aws_toolbox.commands.regions import get_regions
 from aws_toolbox.utils import logutils
 
 log = logutils.get_logger(__name__)
@@ -31,19 +30,19 @@ def delete_bucket(ctx, name, dryrun):
     buckets_to_delete = list(filter(buckets_filter, buckets["Buckets"]))
 
     if len(buckets_to_delete) == 0:
-        log.info(f"No Bucket to delete in region {region}")
+        log.info(f"No Bucket to delete")
         return
 
     if dryrun:
         log.info(
-            f"The following buckets would be deleted, but dryrun mode is enabled and nothing will be done: {','.join(map(lambda b: b['Name'], buckets_to_delete))}"
+            f"The following {len(buckets_to_delete)} buckets would be deleted, but dryrun mode is enabled and nothing will be done: {', '.join(map(lambda b: b['Name'], buckets_to_delete))}"
         )
         return
 
     for bucket_to_delete in buckets_to_delete:
         bucket_name = bucket_to_delete["Name"]
         creation_date = bucket_to_delete["CreationDate"]
-        log.info(f"Emptying Bucket {bucket_name} in region {region} with creation date {creation_date}")
+        log.info(f"Emptying Bucket {bucket_name} with creation date {creation_date}")
 
         try:
             object_versions = s3_client.list_object_versions(Bucket=bucket_name)
@@ -54,7 +53,7 @@ def delete_bucket(ctx, name, dryrun):
         except Exception as e:
             log.error(f"Cannot empty Bucket {bucket_name}: {e}")
 
-        log.info(f"Deleting Bucket {bucket_name} in region {region} with creation date {creation_date}")
+        log.info(f"Deleting Bucket {bucket_name} with creation date {creation_date}")
 
         try:
             s3_client.delete_bucket(Bucket=bucket_name)
