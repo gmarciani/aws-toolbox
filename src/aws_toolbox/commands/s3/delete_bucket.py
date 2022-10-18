@@ -48,9 +48,7 @@ def delete_bucket(ctx, name, dryrun):
 
         try:
             object_versions = s3_client.list_object_versions(Bucket=bucket_name).get("Versions", [])
-            objects_to_delete = [
-                {"Key": obj["Key"], "VersionId": obj["VersionId"]} for obj in object_versions
-            ]
+            objects_to_delete = [{"Key": obj["Key"], "VersionId": obj["VersionId"]} for obj in object_versions]
             if objects_to_delete:
                 s3_client.delete_objects(Bucket=bucket_name, Delete={"Objects": objects_to_delete, "Quiet": False})
         except Exception as e:
@@ -59,7 +57,7 @@ def delete_bucket(ctx, name, dryrun):
         log.info(f"Deleting Bucket {bucket_name} with creation date {creation_date}")
 
         max_attempts = 3
-        for attempt in range(1, max_attempts+1):
+        for attempt in range(1, max_attempts + 1):
             try:
                 s3_client.delete_bucket(Bucket=bucket_name)
                 log.info(f"Bucket {bucket_name} deleted")
@@ -67,8 +65,6 @@ def delete_bucket(ctx, name, dryrun):
                 if e.response["Error"]["Code"] == "BucketNotEmpty":
                     log.error(f"Cannot delete Bucket {bucket_name} (attempt {attempt}/{max_attempts}): {e}")
                     time.sleep(1)
-                else:
-                    break
             except Exception as e:
                 log.error(f"Cannot delete Bucket {bucket_name} (attempt {attempt}/{max_attempts}): {e}")
                 break
