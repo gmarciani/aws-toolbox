@@ -30,7 +30,7 @@ repos:
         args: ['--fix=no']
 
   - repo: https://github.com/ambv/black
-    rev: 20.8b0
+    rev: 22.6.0
     hooks:
       - id: black
         args: ['-l 120']
