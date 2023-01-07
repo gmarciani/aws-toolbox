@@ -2,7 +2,7 @@ import click
 
 from aws_toolbox.commands.ec2.delete_ami import delete_ami
 from aws_toolbox.commands.ec2.delete_snapshot import delete_snapshot
-from aws_toolbox.commands.ec2.describe_ami import describe_ami
+from aws_toolbox.commands.ec2.describe_amis import describe_amis
 from aws_toolbox.commands.ec2.describe_key_pairs import describe_key_pairs
 from aws_toolbox.commands.ec2.describe_snapshot import describe_snapshot
 
@@ -15,7 +15,7 @@ def ec2(ctx):
 
 # AMI
 ec2.add_command(delete_ami)
-ec2.add_command(describe_ami)
+ec2.add_command(describe_amis)
 
 # Snapshots
 ec2.add_command(delete_snapshot)
