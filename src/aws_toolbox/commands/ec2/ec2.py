@@ -3,6 +3,7 @@ import click
 from aws_toolbox.commands.ec2.delete_ami import delete_ami
 from aws_toolbox.commands.ec2.delete_snapshot import delete_snapshot
 from aws_toolbox.commands.ec2.describe_ami import describe_ami
+from aws_toolbox.commands.ec2.describe_key_pairs import describe_key_pairs
 from aws_toolbox.commands.ec2.describe_snapshot import describe_snapshot
 
 
@@ -19,3 +20,6 @@ ec2.add_command(describe_ami)
 # Snapshots
 ec2.add_command(delete_snapshot)
 ec2.add_command(describe_snapshot)
+
+# Key Pairs
+ec2.add_command(describe_key_pairs)
