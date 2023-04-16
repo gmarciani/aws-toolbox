@@ -20,8 +20,6 @@ pre-commit run --all-files
 ## Install
 Install the package on your local environment:
 ```
-pip install --upgrade pip
-pip install -r requirements-dev.txt
 pip install -e .
 ```
 
