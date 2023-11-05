@@ -52,8 +52,10 @@ def delete_snapshot(ctx, region, description, owners, dryrun):
             )
         )
 
-        if len(snapshots_to_delete) == 0:
-            log.info(f"No Snapshot to delete in region {region}")
+        n_snapshots_to_delete = len(snapshots_to_delete)
+        log.info(f"Found {n_snapshots_to_delete} snapshots to delete in region {region}")
+
+        if n_snapshots_to_delete == 0:
             continue
 
         for snapshot_to_delete in snapshots_to_delete:

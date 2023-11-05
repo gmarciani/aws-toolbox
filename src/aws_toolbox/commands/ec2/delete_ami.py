@@ -63,8 +63,10 @@ def delete_ami(ctx, region, name, owners, before, dryrun):
         )
         amis_to_delete = list(filter(ami_filter, amis["Images"]))
 
-        if len(amis_to_delete) == 0:
-            log.info(f"No AMI to delete in region {region}")
+        n_amis_to_delete = len(amis_to_delete)
+        log.info(f"Found {n_amis_to_delete} AMIs to delete in region {region}")
+
+        if n_amis_to_delete == 0:
             continue
 
         for ami_to_delete in amis_to_delete:
