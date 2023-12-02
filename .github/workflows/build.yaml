@@ -2,6 +2,10 @@ name: 🧱 Build
 
 on:
   push:
+    branches:
+      - mainline
+    tags-ignore:
+      - *
   pull_request:
   schedule:
     - cron: "0 07 * * FRI"
