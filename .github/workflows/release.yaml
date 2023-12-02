@@ -3,7 +3,7 @@ name: 🚀 Release
 on:
   push:
     tags:
-      - '*'
+      - 'v*'
 
 jobs:
   build-and-publish:
@@ -22,10 +22,6 @@ jobs:
 
       - name: Install Python packages
         run: pip install --upgrade build twine
-
-      - name: Extract tag name
-        id: tag
-        run: echo ::set-output name=TAG_NAME::$(echo $GITHUB_REF | cut -d / -f 3)
 
       - name: Build wheels
         run: python -m build
