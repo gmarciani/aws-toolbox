@@ -46,3 +46,6 @@ coverage.xml
 
 # pyenv
 .python-version
+
+# Secrets
+resources/secrets/**/*
