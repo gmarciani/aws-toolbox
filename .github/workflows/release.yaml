@@ -36,13 +36,13 @@ jobs:
       - name: Publish package to TestPyPI
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
-          repository-url: https://test.pypi.org/project/aws-toolbox/
+          repository-url: https://test.pypi.org/legacy/
           password: ${{ secrets.TEST_PYPI_API_TOKEN }}
           verbose: true
 
       - name: Publish package to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
-          repository-url: https://pypi.org/project/aws-toolbox/
+          repository-url: https://upload.pypi.org/legacy/
           password: ${{ secrets.PYPI_API_TOKEN }}
           verbose: true
