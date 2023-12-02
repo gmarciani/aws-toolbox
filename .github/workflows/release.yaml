@@ -29,12 +29,12 @@ jobs:
       - name: Check PyPI description
         run: python -m twine check dist/*
 
-      - name: Publish package to TestPyPI
-        uses: pypa/gh-action-pypi-publish@release/v1
-        with:
-          repository-url: https://test.pypi.org/legacy/
-          password: ${{ secrets.TEST_PYPI_API_TOKEN }}
-          verbose: true
+#      - name: Publish package to TestPyPI
+#        uses: pypa/gh-action-pypi-publish@release/v1
+#        with:
+#          repository-url: https://test.pypi.org/legacy/
+#          password: ${{ secrets.TEST_PYPI_API_TOKEN }}
+#          verbose: true
 
       - name: Publish package to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
