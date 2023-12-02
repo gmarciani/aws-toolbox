@@ -38,7 +38,9 @@ aws-toolbox secretsmanager list-secrets \
 
 Delete all secrets whose name and regions match the provided regular expressions:
 ```
-aws-toolbox secretsmanager delete-secrets --region "us-west-.*" --name "Sample.*"
+aws-toolbox secretsmanager delete-secrets \
+  --region "us-west-.*" \
+  --name "Sample.*"
 ```
 
 ### EC2 AMIs
