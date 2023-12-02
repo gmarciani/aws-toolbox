@@ -28,13 +28,17 @@ pip install -e .
 python -m build
 ```
 
-## Publish
-Publish to PyPI test repo at [TestPyPi:aws-toolbox](https://test.pypi.org/project/aws-toolbox):
+## Release
+To release a new version you need to push the release tag.
+Such a push triggers the automatic release to PyPI and the publication of the release on GitHub.
+
 ```
-python -m twine upload --repository testpypi dist/*
+RELEASE=X.Y.Z
+git tag v${RELEASE} && git push origin v${RELEASE}
 ```
 
-Publish to PyPI production repo at [PyPi:aws-toolbox](https://pypi.org/project/aws-toolbox):
+To delete the release tag and release notes (this does not delete the release from PyPI):
 ```
-python -m twine upload dist/*
+RELEASE=X.Y.Z
+gh release delete v${RELEASE} --cleanup-tag
 ```
