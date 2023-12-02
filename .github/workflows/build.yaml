@@ -36,5 +36,5 @@ jobs:
       - name: Build wheels
         run: python -m build
 
-      - name: Check PyPi description
+      - name: Check PyPI description
         run: python -m twine check dist/*
