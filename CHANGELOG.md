@@ -3,7 +3,7 @@
 0.0.4
 -----
 ### ENHANCEMENTS
-- Added EC2 commands: describe_key_pairs
+- Added CloudFormation commands: delete_stacks
 
 ### DEPENDENCIES
 - Upgraded boto3 to version ~= 1.33.6
