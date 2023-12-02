@@ -29,16 +29,15 @@ jobs:
       - name: Check PyPI description
         run: python -m twine check dist/*
 
-#      - name: Publish package to TestPyPI
-#        uses: pypa/gh-action-pypi-publish@release/v1
-#        with:
-#          repository-url: https://test.pypi.org/legacy/
-#          password: ${{ secrets.TEST_PYPI_API_TOKEN }}
-#          verbose: true
-
       - name: Publish package to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
           repository-url: https://upload.pypi.org/legacy/
           password: ${{ secrets.PYPI_API_TOKEN }}
           verbose: true
+
+      - name: Publish release notes on GitHub
+        run: gh release create ${TAG} -F CHANGELOG.md
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_API_TOKEN }}
+          TAG: ${{ github.ref_name }}
