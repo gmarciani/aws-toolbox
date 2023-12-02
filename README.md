@@ -48,3 +48,13 @@ Delete (emptying, if necessary) all snapshots whose name matches the provided re
 ```
 aws-toolbox ec2 delete-snapshot --region "eu-.*" --owners 319414405305 --description "Copied for DestinationAmi .*"
 ```
+
+### CloudFormation Stacks
+Delete all stacks whose name and region matches the provided patterns and have been created before given datetime:
+```
+aws-toolbox cloudformation delete-stacks \
+  --region "us-.*" \
+  --name "aws-parallelcluster-3-8-0-amzn2.*" 
+  --before 2023-12-01T00:00:00.000Z \
+  --dryrun
+```
