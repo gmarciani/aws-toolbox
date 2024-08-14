@@ -2,6 +2,8 @@
 
 ## Requirements
 ```
+pyenv virtualenv 3.10.13 aws-toolbox-dev
+pyenv activate aws-toolbox-dev
 pip install --upgrade pip
 pip install -r requirements-dev.txt
 ```
@@ -28,17 +30,53 @@ pip install -e .
 python -m build
 ```
 
-## Release
-To release a new version you need to push the release tag.
-Such a push triggers the automatic release to PyPI and the publication of the release on GitHub.
+## Publish
+To publish a new release on PyPI, you need to create a new release on GitHub,
+which in turns triggers a GitHub action to publish the release on PyPI.
+
+To this aim, you first need to store the PyPI API Token as a secret on GitHub:
 
 ```
-RELEASE=X.Y.Z
-git tag v${RELEASE} && git push origin v${RELEASE}
+PYPI_API_TOKEN_BODY=$(cat resources/secrets/pypi-token.txt)
+gh secret set "PYPI_API_TOKEN" \
+  --app "actions" \
+  --body "${PYPI_API_TOKEN_BODY}"
 ```
 
-To delete the release tag and release notes (this does not delete the release from PyPI):
+Create a draft release:
+
 ```
-RELEASE=X.Y.Z
-gh release delete v${RELEASE} --cleanup-tag
+VERSION="1.0.0"
+gh release create v${VERSION} \
+--title "aws-toolbox v$VERSION" \
+--target mainline \
+--notes-file CHANGELOG.md \
+--latest \
+--draft
+```
+
+Make changes to the release notes.
+
+Publish the release:
+
+```
+gh release edit v${VERSION} --draft=false
+```
+
+If you need to delete the release from GitHub:
+
+```
+gh release delete v${VERSION} --cleanup-tag --yes
+```
+
+### Manually publish to PyPI test
+Publish to PyPi test repo at https://test.pypi.org/project/aws-toolbox
+```
+python -m twine upload --repository testpypi dist/*
+```
+
+### Manually publish to PyPI prod
+Publish to PyPi production repo at https://pypi.org/project/aws-toolbox
+```
+python -m twine upload dist/*
 ```
