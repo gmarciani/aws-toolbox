@@ -1,5 +1,16 @@
 # CHANGELOG
 
+0.0.5
+-----
+### ENHANCEMENTS
+- Added CloudFormation commands: delete_stacks
+
+### CHANGES
+- Upgraded boto3 to version ~= 1.33.6
+- Upgraded click to version ~= 8.1.7
+- Upgraded colored  to version ~= 2.2.3
+- Upgraded pyfiglet to version ~= 1.0.2
+
 0.0.4
 -----
 ### ENHANCEMENTS
