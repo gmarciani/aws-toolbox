@@ -5,7 +5,7 @@
 ### Changes
 - Upgraded `boto3` to version ~= 1.34.160.
 - Upgraded `colored` to version ~= 2.2.4.
-- Upgraded `setuptools` to version ~= 72.1.0.
+- Upgraded `setuptools` to version ~= 72.2.0.
 
 ## 0.0.4
 
