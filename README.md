@@ -66,6 +66,6 @@ Delete all stacks whose name and region matches the provided patterns and have b
 ```
 aws-toolbox cloudformation delete-stacks \
   --region "us-.*" \
-  --name "aws-parallelcluster-3-8-0-amzn2.*" 
+  --name "aws-parallelcluster-3-8-0-amzn2.*"
   --before 2023-12-01T00:00:00.000Z
 ```
