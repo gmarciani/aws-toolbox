@@ -31,7 +31,11 @@ log = logutils.get_logger(__name__)
     help="Date time string, e.g. 2022-03-21T13:34:12.000Z",
 )
 @click.option(
-    "--dryrun/--no-dryrun", default=False, show_default=True, type=bool, help="Activate/Deactivate dryrun mode."
+    "--dryrun/--no-dryrun",
+    default=False,
+    show_default=True,
+    type=bool,
+    help="Activate/Deactivate dryrun mode.",
 )
 @click.pass_context
 def delete_ami(ctx, region, name, owners, before, dryrun):

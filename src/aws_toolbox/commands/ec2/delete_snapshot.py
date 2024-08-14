@@ -26,7 +26,11 @@ log = logutils.get_logger(__name__)
     help="Comma separated list of owners.",
 )
 @click.option(
-    "--dryrun/--no-dryrun", default=False, show_default=True, type=bool, help="Activate/Deactivate dryrun mode."
+    "--dryrun/--no-dryrun",
+    default=False,
+    show_default=True,
+    type=bool,
+    help="Activate/Deactivate dryrun mode.",
 )
 @click.pass_context
 def delete_snapshot(ctx, region, description, owners, dryrun):
@@ -48,7 +52,8 @@ def delete_snapshot(ctx, region, description, owners, dryrun):
 
         snapshots_to_delete = list(
             filter(
-                lambda snapshot: re.match(snapshot_description_pattern, snapshot["Description"]), snapshots["Snapshots"]
+                lambda snapshot: re.match(snapshot_description_pattern, snapshot["Description"]),
+                snapshots["Snapshots"],
             )
         )
 

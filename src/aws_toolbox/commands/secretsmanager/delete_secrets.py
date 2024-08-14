@@ -21,7 +21,11 @@ log = logutils.get_logger(__name__)
     help="Regex pattern for Secret name.",
 )
 @click.option(
-    "--dryrun/--no-dryrun", default=False, show_default=True, type=bool, help="Activate/Deactivate dryrun mode."
+    "--dryrun/--no-dryrun",
+    default=False,
+    show_default=True,
+    type=bool,
+    help="Activate/Deactivate dryrun mode.",
 )
 @click.pass_context
 def delete_secrets(ctx, region, name, dryrun):

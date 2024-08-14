@@ -27,13 +27,15 @@ log = logutils.get_logger(__name__)
     help="Date time string, e.g. 2022-03-21T13:34:12.000Z",
 )
 @click.option(
-    "--dryrun/--no-dryrun", default=False, show_default=True, type=bool, help="Activate/Deactivate dryrun mode."
+    "--dryrun/--no-dryrun",
+    default=False,
+    show_default=True,
+    type=bool,
+    help="Activate/Deactivate dryrun mode.",
 )
 @click.pass_context
 def delete_stacks(ctx, region, name, before, dryrun):
-    log.info(
-        f"Deleting Stacks with region pattern {region}, name pattern {name}, before {before}, dryrun {dryrun}"
-    )
+    log.info(f"Deleting Stacks with region pattern {region}, name pattern {name}, before {before}, dryrun {dryrun}")
 
     regions_to_target = get_regions(region_name_regex=region)
 
@@ -42,13 +44,12 @@ def delete_stacks(ctx, region, name, before, dryrun):
     creation_date_limit = time.parse(before)
 
     for region in regions_to_target:
-        log.info(
-            f"Deleting Stacks in region {region}, name pattern {name}, creation date limit {creation_date_limit}"
-        )
+        log.info(f"Deleting Stacks in region {region}, name pattern {name}, creation date limit {creation_date_limit}")
 
         client = boto3.client("cloudformation", region_name=region)
-        resources = (client.list_stacks().get("StackSummaries", []) +
-                     client.list_stacks(StackStatusFilter=["DELETE_FAILED"]).get("StackSummaries", []))
+        resources = client.list_stacks().get("StackSummaries", []) + client.list_stacks(
+            StackStatusFilter=["DELETE_FAILED"]
+        ).get("StackSummaries", [])
 
         resources_filter = (
             lambda stack: re.match(resource_name_pattern, stack["StackName"])

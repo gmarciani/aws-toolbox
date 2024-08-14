@@ -17,7 +17,11 @@ log = logutils.get_logger(__name__)
     help="Regex pattern for Bucket name.",
 )
 @click.option(
-    "--dryrun/--no-dryrun", default=False, show_default=True, type=bool, help="Activate/Deactivate dryrun mode."
+    "--dryrun/--no-dryrun",
+    default=False,
+    show_default=True,
+    type=bool,
+    help="Activate/Deactivate dryrun mode.",
 )
 @click.pass_context
 def delete_bucket(ctx, name, dryrun):
@@ -50,7 +54,10 @@ def delete_bucket(ctx, name, dryrun):
             object_versions = s3_client.list_object_versions(Bucket=bucket_name).get("Versions", [])
             objects_to_delete = [{"Key": obj["Key"], "VersionId": obj["VersionId"]} for obj in object_versions]
             if objects_to_delete:
-                s3_client.delete_objects(Bucket=bucket_name, Delete={"Objects": objects_to_delete, "Quiet": False})
+                s3_client.delete_objects(
+                    Bucket=bucket_name,
+                    Delete={"Objects": objects_to_delete, "Quiet": False},
+                )
         except Exception as e:
             log.error(f"Cannot empty Bucket {bucket_name}: {e}")
 

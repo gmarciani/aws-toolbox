@@ -43,7 +43,8 @@ def describe_snapshot(ctx, region, description, owners):
 
         snapshots_to_describe = list(
             filter(
-                lambda snapshot: re.match(snapshot_description_pattern, snapshot["Description"]), snapshots["Snapshots"]
+                lambda snapshot: re.match(snapshot_description_pattern, snapshot["Description"]),
+                snapshots["Snapshots"],
             )
         )
 

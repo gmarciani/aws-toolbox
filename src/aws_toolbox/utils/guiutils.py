@@ -21,7 +21,15 @@ def get_splash(name):
     return "%s %s %s" % (fg("yellow"), f.renderText(name), attr(0))
 
 
-def print_progress(iteration, total, prefix="PROGRESS", suffix="Complete", message="", decimals=0, bar_length=50):
+def print_progress(
+    iteration,
+    total,
+    prefix="PROGRESS",
+    suffix="Complete",
+    message="",
+    decimals=0,
+    bar_length=50,
+):
     format_string = "{0:." + str(decimals) + "f}"
     percents = format_string.format(100 * (iteration / float(total)))
     filled_length = int(round(bar_length * iteration / float(total)))
