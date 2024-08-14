@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## 0.0.6
+*Pending Release*
+
+### Improvements
+- TBD
+
+### Changes
+- TBD
+
 ## 0.0.5
 
 ### Changes
