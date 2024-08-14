@@ -1,47 +1,46 @@
 # CHANGELOG
 
-0.0.5
------
-### ENHANCEMENTS
+## 0.0.5
+
+### Improvements
 - Added CloudFormation commands: delete_stacks
 
-### CHANGES
+### Changes
 - Upgraded boto3 to version ~= 1.33.6
 - Upgraded click to version ~= 8.1.7
 - Upgraded colored  to version ~= 2.2.3
 - Upgraded pyfiglet to version ~= 1.0.2
 
-0.0.4
------
-### ENHANCEMENTS
+## 0.0.4
+
+### Improvements
 - Added CloudFormation commands: delete_stacks
 
-### DEPENDENCIES
+### Changes
 - Upgraded boto3 to version ~= 1.33.6
 - Upgraded click to version ~= 8.1.7
 - Upgraded colored  to version ~= 2.2.3
 - Upgraded pyfiglet to version ~= 1.0.2
 
-0.0.3
------
-### ENHANCEMENTS
+## 0.0.3
+
+### Improvements
 - Added EC2 commands: describe_key_pairs
 
-### DEPENDENCIES
+### Changes
 - Upgraded boto3 to version 1.24.40
 
-0.0.2
------
-### ENHANCEMENTS
+## 0.0.2
+
+### Improvements
 - Added EC2 commands: describe_ami, delete_ami, describe_snapshots, delete_snapshots
 - Added S3 commands: delete_bucket
 - Added SecretsManager commands: delete_secrets, list-secrets
 
-### DEPENDENCIES
+### Changes
 - Upgraded boto3 to version 1.24.34
 - Upgraded click to version 8.1.3
 
-0.0.1
------
+## 0.0.1
 
 - Released on GitHub
