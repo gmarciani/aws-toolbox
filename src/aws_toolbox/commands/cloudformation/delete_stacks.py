@@ -82,6 +82,11 @@ def delete_stacks(ctx, region, name, before, dryrun):
             log.info(f"Deleting {resource_description}")
 
             try:
+                stack_info = client.describe_stacks(StackName=resource_name)["Stacks"][0]
+                if stack_info.get("EnableTerminationProtection", False):
+                    log.info(f"Disabling termination protection for Stack {resource_name}")
+                    client.update_termination_protection(StackName=resource_name, EnableTerminationProtection=False)
+
                 client.delete_stack(StackName=resource_name, RetainResources=resources_to_retain)
             except Exception as e:
                 log.error(f"Cannot delete Stack {resource_name}: {e}")
