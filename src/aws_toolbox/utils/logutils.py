@@ -5,7 +5,27 @@ Utilities for logging.
 import logging
 import sys
 
-FORMATTER = logging.Formatter("%(asctime)-15s [%(levelname)s] %(message)s")
+
+class ColoredFormatter(logging.Formatter):
+    COLORS = {
+        "INFO": "\033[92m",  # Green
+        "WARNING": "\033[93m",  # Yellow
+        "ERROR": "\033[91m",  # Red
+        "DEBUG": "\033[94m",  # Blue
+        "CRITICAL": "\033[95m",  # Magenta
+    }
+    GREY = "\033[90m"
+    RESET = "\033[0m"
+
+    def format(self, record):
+        level_color = self.COLORS.get(record.levelname, "")
+        formatted = (
+            f"{level_color}[{record.levelname}]{self.RESET} {self.GREY}{record.name}:{self.RESET} {record.getMessage()}"
+        )
+        return formatted
+
+
+FORMATTER = ColoredFormatter()
 LEVEL = logging.INFO
 
 
@@ -42,13 +62,16 @@ class ConsoleHandler(logging.StreamHandler):
             logging.StreamHandler.flush(self)
 
 
-logging.basicConfig(level=LEVEL, handlers=[ConsoleHandler(LEVEL, FORMATTER)], force=True)
+# Configure root logger to use our custom formatter
+root_logger = logging.getLogger()
+root_logger.setLevel(LEVEL)
+root_logger.handlers.clear()
+root_logger.addHandler(ConsoleHandler(LEVEL, FORMATTER))
 
 
 def get_logger(name, level=LEVEL, handlers=[ConsoleHandler(LEVEL, FORMATTER)]):
-    logging.basicConfig(level=level, handlers=handlers, force=True)
     return logging.getLogger(name)
 
 
 def set_level(level):
-    logging.basicConfig(level=level, force=True)
+    logging.getLogger().setLevel(level)
