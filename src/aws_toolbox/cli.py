@@ -3,6 +3,7 @@
 import click
 
 from aws_toolbox.commands.cloudformation import cloudformation
+from aws_toolbox.commands.iam import iam
 from aws_toolbox.commands.ec2 import ec2
 from aws_toolbox.commands.s3 import s3
 from aws_toolbox.commands.secretsmanager import secretsmanager
@@ -36,6 +37,7 @@ main.add_command(ec2.ec2)
 main.add_command(s3.s3)
 main.add_command(secretsmanager.secretsmanager)
 main.add_command(cloudformation.cloudformation)
+main.add_command(iam.iam)
 
 
 if __name__ == "__main__":
