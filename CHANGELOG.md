@@ -1,13 +1,16 @@
 # CHANGELOG
 
 ## 0.0.6
-*Pending Release*
 
 ### Improvements
-- TBD
+- Added IAM command: delete roles
 
 ### Changes
-- TBD
+- Upgraded `boto3` to version ~= 1.40.8
+- Upgraded `click` to version ~= 8.2.1
+- Upgraded `colored` to version ~= 2.3.1
+- Upgraded `pyfiglet` to version ~= 1.0.3
+- Upgraded `setuptools` to version ~= 80.9.0
 
 ## 0.0.5
 
