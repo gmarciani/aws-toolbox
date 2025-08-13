@@ -2,7 +2,7 @@
 
 ## Requirements
 ```
-pyenv virtualenv 3.10.13 aws-toolbox-dev
+pyenv virtualenv 3.12.8 aws-toolbox-dev
 pyenv activate aws-toolbox-dev
 pip install --upgrade pip
 pip install -r requirements-dev.txt
